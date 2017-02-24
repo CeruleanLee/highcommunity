@@ -47,11 +47,11 @@ public class HighCommunityApplication extends CoreApp{
         super.onCreate();
 //        JPushInterface.setDebugMode(true); // 设置开启日志,发布时请关闭日志
 //        JPushInterface.init(this); // 初始化 JPush
-//        /**第三个参数为SDK调试模式开关，建议在测试阶段建议设置成true，发布时设置为false。*/
+        /**第三个参数为SDK调试模式开关，建议在测试阶段建议设置成true，发布时设置为false。*/
 //        CrashReport.initCrashReport(getApplicationContext(), "63e6f78cb5", false);
-//        /**自定义的crash 处理 将crash保存在文件中通过服务器上传   运营时用 现在没用到**/
-//        CrashHandler crashHandler = CrashHandler.getInstance();
-//        crashHandler.init(getApplicationContext());
+        /**自定义的crash 处理 将crash保存在文件中通过服务器上传   运营时用 现在没用到**/
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
         app = this;
         //初始化屏幕宽高
         getScreenSize();

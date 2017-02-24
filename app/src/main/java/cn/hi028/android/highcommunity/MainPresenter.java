@@ -14,6 +14,6 @@ public class MainPresenter extends Contract.MainPresenter{
 
     @Override
     public void onStart() {
-
+        getTabList();
     }
 }
