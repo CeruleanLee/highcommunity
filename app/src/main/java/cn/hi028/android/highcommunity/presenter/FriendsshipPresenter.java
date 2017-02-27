@@ -1,5 +1,7 @@
-package cn.hi028.android.highcommunity;
+package cn.hi028.android.highcommunity.presenter;
 
+import cn.hi028.android.highcommunity.CommunityListBean;
+import cn.hi028.android.highcommunity.Contract;
 import rx.Observer;
 import rx.functions.Action1;
 
@@ -12,11 +14,6 @@ import rx.functions.Action1;
 public class FriendsshipPresenter extends Contract.FriendsshipPresenter {
     @Override
     public void getMsgData(int num, int page) {
-
-    }
-
-    @Override
-    public void onStart() {
         Action1<CommunityListBean> action1 = new Action1<CommunityListBean>() {
             @Override
             public void call(CommunityListBean mList) {
@@ -25,5 +22,10 @@ public class FriendsshipPresenter extends Contract.FriendsshipPresenter {
         };
         mRxManager.add(mModel.getFriendsshipData()
                 .subscribe((Observer<? super Object>) action1));
+    }
+
+    @Override
+    public void onStart() {
+        getMsgData(10, 1);
     }
 }

@@ -1,4 +1,4 @@
-package cn.hi028.android.highcommunity;
+package cn.hi028.android.highcommunity.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,13 +13,19 @@ import com.hpw.mvpframe.widget.recyclerview.BaseQuickAdapter;
 import com.hpw.mvpframe.widget.recyclerview.BaseViewHolder;
 import com.hpw.mvpframe.widget.recyclerview.CoreRecyclerView;
 
+import cn.hi028.android.highcommunity.CommunityListBean;
+import cn.hi028.android.highcommunity.Contract;
+import cn.hi028.android.highcommunity.R;
+import cn.hi028.android.highcommunity.model.FriendsshipModel;
+import cn.hi028.android.highcommunity.presenter.FriendsshipPresenter;
+
 /**
  * @说明：
  * @作者： Lee_yting
  * @时间：2017/2/24 0024
  */
 
-public class FriendsshipFrag extends CoreBaseFragment<FriendsshipPresenter, FriendsshipModel> implements Contract.FriendsshipView {
+public class FriendsshipFrag extends CoreBaseFragment<FriendsshipPresenter, FriendsshipModel> implements Contract.FriendsshipView ,Thread.UncaughtExceptionHandler{
 
     CoreRecyclerView coreRecyclerView;
 
@@ -31,12 +37,15 @@ public class FriendsshipFrag extends CoreBaseFragment<FriendsshipPresenter, Frie
 
     @Override
     public void showContent(CommunityListBean mList) {
+        Log.e("FriendsshipFrag: ","showContent");
+
         coreRecyclerView.getAdapter().addData(mList.getData());
 
     }
 
     @Override
     public View getLayoutView() {
+        Log.e("FriendsshipFrag: ","getLayoutView");
 
         coreRecyclerView = new CoreRecyclerView(mContext).init(new BaseQuickAdapter<CommunityListBean.CommunityBean, BaseViewHolder>(R.layout.item_msg) {
             @Override
@@ -67,11 +76,22 @@ public class FriendsshipFrag extends CoreBaseFragment<FriendsshipPresenter, Frie
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
+        Log.e("FriendsshipFrag: ","initUI");
 
     }
 
     @Override
+    public void initData() {
+        Log.e("FriendsshipFrag: ","initData");
+
+        mPresenter.onStart();
+//        mPresenter.startInterval();
+    }
+
+    @Override
     public void showError(String msg) {
+        Log.e("FriendsshipFrag: ","showError:"+msg);
+
 
     }
 
@@ -98,4 +118,10 @@ public class FriendsshipFrag extends CoreBaseFragment<FriendsshipPresenter, Frie
             showToast("点击第"+position+"个item");
         }
     };
+
+    @Override
+    public void uncaughtException(Thread t, Throwable e) {
+        Log.e("AAA 2", "uncaughtException   " + e.toString());
+
+    }
 }

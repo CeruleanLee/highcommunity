@@ -1,4 +1,4 @@
-package cn.hi028.android.highcommunity;
+package cn.hi028.android.highcommunity.ui;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import com.hpw.mvpframe.base.CoreBaseActivity;
 
 import butterknife.BindView;
+import cn.hi028.android.highcommunity.R;
 
 public class MainActivity extends CoreBaseActivity {
 

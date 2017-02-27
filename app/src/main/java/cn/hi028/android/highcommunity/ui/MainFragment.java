@@ -1,4 +1,4 @@
-package cn.hi028.android.highcommunity;
+package cn.hi028.android.highcommunity.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,6 +18,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.hi028.android.highcommunity.Constants;
+import cn.hi028.android.highcommunity.Contract;
+import cn.hi028.android.highcommunity.R;
+import cn.hi028.android.highcommunity.model.MainModel;
+import cn.hi028.android.highcommunity.presenter.MainPresenter;
 
 /**
  * @说明：
@@ -50,6 +55,7 @@ public class MainFragment extends CoreBaseFragment<MainPresenter, MainModel> imp
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //在OnCreate方法中调用下面方法，然后再使用线程，就能在uncaughtException方法中捕获到异常
+
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
@@ -60,11 +66,11 @@ public class MainFragment extends CoreBaseFragment<MainPresenter, MainModel> imp
         Log.e(TAG, "showTabList：" + mTabs.length + ",toString:" + mTabs.toString());
         for (int i = 0; i < mTabs.length; i++) {
             Log.e(TAG, "showTabList loop " + i);
-            if (tabs!=null){
+            if (tabs != null) {
 
                 tabs.addTab(tabs.newTab().setText(mTabs[i]));
-            }else{
-                Log.e(TAG, "---null---  " );
+            } else {
+                Log.e(TAG, "---null---  ");
 
             }
 //            tabs.addTab(tabs.newTab());
@@ -114,6 +120,8 @@ public class MainFragment extends CoreBaseFragment<MainPresenter, MainModel> imp
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
+        tabs = (TabLayout) view.findViewById(R.id.tabs);
+        viewpager = (ViewPager) view.findViewById(R.id.viewpager);
 
     }
 
@@ -126,7 +134,7 @@ public class MainFragment extends CoreBaseFragment<MainPresenter, MainModel> imp
     @Override
     public void uncaughtException(Thread t, Throwable e) {
         //在此处理异常， arg1即为捕获到的异常
-        Log.i("AAA", "uncaughtException   " + e);
+        Log.i("AAA", "uncaughtException   " + e.toString());
     }
 
     @Override

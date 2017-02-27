@@ -3,6 +3,7 @@ package cn.hi028.android.highcommunity;
 import com.hpw.mvpframe.base.CoreBaseModel;
 import com.hpw.mvpframe.base.CoreBasePresenter;
 import com.hpw.mvpframe.base.CoreBaseView;
+import com.hpw.mvpframe.data.entity.CoreDataResponse;
 
 import rx.Observable;
 
@@ -18,7 +19,7 @@ public interface Contract {
         public abstract void getMsgData(int num, int page);
     }
     interface FriendsshipModel extends CoreBaseModel {
-        Observable<Object> getFriendsshipData();
+        Observable<CommunityListBean> getFriendsshipData();
     }
 
     interface FriendsshipView extends CoreBaseView {

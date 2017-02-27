@@ -1,6 +1,6 @@
 package com.hpw.mvpframe.data.entity;
 
-public class CoreDataResponse<T> {
+public class CoreDataResponse<T> extends Object {
     private int code;
     private String msg;
     private T newslist;
